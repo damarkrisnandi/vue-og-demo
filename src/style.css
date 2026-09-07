@@ -70,6 +70,15 @@ h1 {
   color: #cbd5e1;
 }
 
+.preview {
+  margin-top: 1.75rem;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  display: block;
+}
+
 .chips {
   margin-top: 2rem;
   display: flex;
