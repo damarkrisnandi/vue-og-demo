@@ -20,7 +20,9 @@ export default async function middleware(request) {
   const desc = escapeHtml(params.get('desc'));
   const image = `https://picsum.photos/seed/${encodeURIComponent(seed)}/1200/630`;
 
-  const response = await fetch(request);
+  // fetch the static asset directly (not `request`) to avoid re-triggering this middleware
+  const assetUrl = new URL('/index.html', url);
+  const response = await fetch(assetUrl);
   let html = await response.text();
 
   if (title) {
