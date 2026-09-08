@@ -1,0 +1,18 @@
+# Example for teams running the existing hardened nginx image.
+# Only "/" is proxied to the og-meta service (for dynamic OG tag injection);
+# every other path is still served as static files by nginx directly.
+server {
+    listen 8080;
+
+    location = / {
+        proxy_pass http://og-meta-service:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+    }
+
+    location / {
+        root /etc/nginx/html/webportal;
+        try_files $uri $uri/ /index.html;
+    }
+}
